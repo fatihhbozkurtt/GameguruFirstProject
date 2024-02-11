@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class M_Input : MonoSingleton<M_Input>
+public class InputManager : MonoSingleton<InputManager>
 {
     public LayerMask CellLayer;
 
@@ -16,12 +16,11 @@ public class M_Input : MonoSingleton<M_Input>
             if (!isTouchedDown)
             {
                 isTouchedDown = true;
-                if (Physics.Raycast(ray, out hit, 100, CellLayer))
+                if (Physics.Raycast(ray, out hit, 100))
                 {
-                    CellController cellController = hit.collider.gameObject.GetComponentInParent<CellController>();
-                    if (cellController != null)
+                    if (hit.collider.TryGetComponent(out CellController cell))
                     {
-                        _touchedCell = cellController;
+                        _touchedCell = cell;
                     }
                 }
             }

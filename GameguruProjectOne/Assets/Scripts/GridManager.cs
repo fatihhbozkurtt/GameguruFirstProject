@@ -31,13 +31,7 @@ public class GridManager : MonoSingleton<GridManager>
     {
         if (GridPlan != null)
         {
-            for (int x = 0; x < GridPlan.GetLength(0); x++)
-            {
-                for (int y = 0; y < GridPlan.GetLength(1); y++)
-                {
-                    Destroy(GridPlan[x, y].CellObject);
-                }
-            }
+            DestroyPreviousGrid();
         }
 
         desiredRowCount = _gridSize;
@@ -63,6 +57,17 @@ public class GridManager : MonoSingleton<GridManager>
         CellParent.transform.position = Vector3.zero;
 
         SetCameraPos();
+    }
+
+    private void DestroyPreviousGrid()
+    {
+        for (int x = 0; x < GridPlan.GetLength(0); x++)
+        {
+            for (int y = 0; y < GridPlan.GetLength(1); y++)
+            {
+                Destroy(GridPlan[x, y].CellObject);
+            }
+        }
     }
 
     private void SetCameraPos()
@@ -109,7 +114,7 @@ public class GridManager : MonoSingleton<GridManager>
         {
             CellController cellController = matchingGroups[i].GetComponent<CellController>();
 
-            GetCellStats(cell:cellController).IsOccupied = false;
+            GetCellStats(cell: cellController).IsOccupied = false;
             cellController.SetCrossImage(activate: false);
         }
 

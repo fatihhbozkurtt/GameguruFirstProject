@@ -8,11 +8,6 @@ public class CellController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] Vector2 _coordinates = Vector2.zero;
 
-    public void SetCrossImage(bool activate)
-    {
-        crossImage.SetActive(activate);
-    }
-
     public Vector2 GetCoordinates()
     {
         return _coordinates;
@@ -23,4 +18,9 @@ public class CellController : MonoBehaviour
         _coordinates.x = x;
         _coordinates.y = y;
     }
+    public void SetCrossImage(bool activate)
+    {
+        crossImage.SetActive(activate);
+    }
+
 }

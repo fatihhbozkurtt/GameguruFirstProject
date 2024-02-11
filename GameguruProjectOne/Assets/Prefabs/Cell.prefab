@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437060960475803792}
+  - component: {fileID: 2552747436244470149}
   - component: {fileID: 453428366268239577}
   m_Layer: 0
   m_Name: Cell
@@ -110,6 +111,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2552747436244470149
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778497912234210491}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &453428366268239577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a305275eb3cfb6945af52e7523983fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coordinates: {x: 0, y: 0}
   crossImage: {fileID: 1283319241416435299}
+  _coordinates: {x: 0, y: 0}
 --- !u!1 &5590489094625516473
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,9 +250,8 @@ GameObject:
   - component: {fileID: 3861027129671656677}
   - component: {fileID: 3250838185396002363}
   - component: {fileID: 267985008599204076}
-  - component: {fileID: 7121756057122033823}
   m_Layer: 6
-  m_Name: CellMesh
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,16 +322,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7121756057122033823
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476792391825677415}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
