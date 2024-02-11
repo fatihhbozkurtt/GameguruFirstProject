@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2548244968615180986}
   - component: {fileID: 1393037806328128785}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Coordinates: {x: 0, y: 0}
-  Xobject: {fileID: 1283319241416435299}
+  crossImage: {fileID: 1283319241416435299}
 --- !u!1 &5590489094625516473
 GameObject:
   m_ObjectHideFlags: 0

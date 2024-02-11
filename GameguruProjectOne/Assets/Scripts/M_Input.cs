@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class M_Input : MonoSingleton<M_Input>
 {
     public LayerMask CellLayer;
 
-    private bool TouchDown = false;
-    private CellInfo TouchedCellInfo = null;
+    private bool isTouchedDown = false;
+    private CellController _touchedCell = null;
 
     public void FixedUpdate()
     {
@@ -15,33 +13,34 @@ public class M_Input : MonoSingleton<M_Input>
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (!TouchDown)
+            if (!isTouchedDown)
             {
-                TouchDown = true;
+                isTouchedDown = true;
                 if (Physics.Raycast(ray, out hit, 100, CellLayer))
-                { 
-                    if(hit.collider.gameObject.GetComponentInParent<CellInfo>())
+                {
+                    CellController cellController = hit.collider.gameObject.GetComponentInParent<CellController>();
+                    if (cellController != null)
                     {
-                        TouchedCellInfo = hit.collider.gameObject.GetComponentInParent<CellInfo>();
+                        _touchedCell = cellController;
                     }
                 }
             }
         }
         else
         {
-            if (TouchDown && TouchedCellInfo)
+            if (isTouchedDown && _touchedCell)
             {
-                if (!M_Grid.instance.GridPlan[(int)TouchedCellInfo.Coordinates.x, (int)TouchedCellInfo.Coordinates.y].IsOccupied)
+                CellStatsContainer cellStats = GridManager.instance.GetCellStats(_touchedCell);
+                if (!cellStats.IsOccupied)
                 {
-                    TouchedCellInfo.Xobject.SetActive(true);
-                    M_Grid.instance.GridPlan[(int)TouchedCellInfo.Coordinates.x, (int)TouchedCellInfo.Coordinates.y].IsOccupied = true;
-
-                    M_Grid.instance.CheckAndDestroyMatches();
+                    _touchedCell.SetCrossImage(activate: true);
+                    cellStats.IsOccupied = true;
+                    GridManager.instance.CheckAndDestroyMatches();
                 }
             }
 
-            TouchDown = false;
-            TouchedCellInfo = null;
+            isTouchedDown = false;
+            _touchedCell = null;
         }
     }
 }
