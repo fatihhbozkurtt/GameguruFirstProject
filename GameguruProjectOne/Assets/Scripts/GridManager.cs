@@ -43,15 +43,15 @@ public class GridManager : MonoSingleton<GridManager>
             for (int y = 0; y < desiredColumnCount; y++)
             {
                 GridPlan[x, y] = new CellStatsContainer();
-                GameObject cloneCellObject = Instantiate(CellPrefab, Vector3.zero, CellPrefab.transform.rotation, CellParent.transform);
-                cloneCellObject.transform.localPosition = new Vector3(CellXLength * x, 0, -(CellYLength * y));
-                cloneCellObject.GetComponent<CellController>().SetCoordinates(x, y);
+                GameObject cloneCellGO = Instantiate(CellPrefab, Vector3.zero, CellPrefab.transform.rotation, CellParent.transform);
+                cloneCellGO.transform.localPosition = new Vector3(CellXLength * x, 0, -(CellYLength * y));
+                cloneCellGO.GetComponent<CellController>().SetCoordinates(x, y);
 
                 GridPlan[x, y].PosX = x;
                 GridPlan[x, y].PosY = y;
-                GridPlan[x, y].CellObject = cloneCellObject;
+                GridPlan[x, y].CellObject = cloneCellGO;
 
-                cloneCellObject.transform.localPosition -= new Vector3(((desiredRowCount - 1) / 2f) * CellXLength, 0, -(((desiredColumnCount - 1) / 2f) * CellYLength));
+                cloneCellGO.transform.localPosition -= new Vector3(((desiredRowCount - 1) / 2f) * CellXLength, 0, -(((desiredColumnCount - 1) / 2f) * CellYLength));
             }
         }
         CellParent.transform.position = Vector3.zero;
